@@ -11,8 +11,7 @@ cloud_cover = "20"
 api_key = "YOUR_VALID_API_KEY"
 download=False
 
-# define the folder where the scenes will be stored
-scenes_folder = "https://localhost/pruebaeos/descarga"
+
 
 # send the GET request to the API endpoint
 response = requests.get(f"{api_endpoint}?location={location}&date_range={date_range}&cloud_cover={cloud_cover}&api_key={api_key}")
@@ -20,9 +19,6 @@ response = requests.get(f"{api_endpoint}?location={location}&date_range={date_ra
 # parse the response
 response_json = response.json()
 
-# create the scenes folder if it doesn't exist
-if not os.path.exists(scenes_folder):
-    os.makedirs(scenes_folder)
 
 # print the number of scenes found
 print(f"Number of scenes found: {response_json['number_of_scenes']}")
