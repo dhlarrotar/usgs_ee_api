@@ -27,14 +27,10 @@ if not os.path.exists(scenes_folder):
 # print the number of scenes found
 print(f"Number of scenes found: {response_json['number_of_scenes']}")
 
-# download the scenes
-for scene in response_json["scenes"]:
-    file_path = f"{scenes_folder}/{scene['file_name']}"
-    if not os.path.exists(file_path):
-        # download the scene
-        download_url = f"https://earthexplorer.usgs.gov/download?item_id={scene['id']}&api_key={api_key}"
-        response = requests.get(download_url)
-        open(file_path, "wb").write(response.content)
-        print(f"Scene {scene['id']} has been downloaded.")
-    else:
-        print(f"Scene {scene['id']} already exists in the scenes folder.")
+for scene in response_json['scenes']:
+    print(f"Scene {scene['id']}")
+    print(f"Location: {scene['location']}")
+    print(f"Date: {scene['date']}")
+    print(f"Cloud cover: {scene['cloud_cover']}%")
+    print(f"File name: {scene['file_name']}")
+
